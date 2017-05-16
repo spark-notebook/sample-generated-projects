@@ -1,5 +1,5 @@
 
-organization := "generated"
+organization := "com.example"
 
 name := "simple-spark"
 
@@ -9,7 +9,7 @@ crossPaths := true
 
 scalaVersion := "2.10.6"
 
-maintainer := "" //Docker
+maintainer := "DF" //Docker
 
 resolvers ++= Seq(
  "Maven2 Local" at "file:/Users/vidma-vinted/.m2/repository/" ,
@@ -42,7 +42,7 @@ dockerExposedPorts := Seq(9000, 9443)
 
 daemonUser in Docker := "root"
 
-packageName in Docker := "generated.simplespark"
+packageName in Docker := "com.example.simplespark"
 
 mappings in Docker ++= directory("spark-lib")
 
@@ -152,7 +152,7 @@ libraryDependencies += "com.google.guava" % "guava" % "16.0.1" force()
 test in assembly := {}
 
 //main class
-mainClass in assembly := Some("generated.Main")
+mainClass in assembly := Some("com.example.Main")
 
 artifact in (Compile, assembly) ~= { art =>
   art.copy(`classifier` = Some("assembly"))

@@ -1,5 +1,5 @@
 
-package generated.simplespark
+package com.example.simplespark
 
 object Main {
 
@@ -17,12 +17,8 @@ object Main {
     
     // Spark notebook widgets (can be removed if you do not use them)
     // Dummy implementation of the most common ones (to avoid shipping 80+ MB of spark-notebook jars)
-    def display[C](originalData:C, fields:Option[(String, String)]=None, maxPoints:Int=0) = {}
-    def pairs[C](originalData:C, maxPoints:Int=0) = {}
-    def ul(capacity:Int=10, initData:Seq[String]=Nil, prefill:Option[String]=None) = {}
-    def ol(capacity:Int=10, initData:Seq[String]=Nil, prefill:Option[String]=None) = {}
-    def img(tpe:String="png", width:String="", height:String="") = {}
-    def text(value: String) = {}
+    import notebook.front.widgets.charts._
+    import notebook.front.widgets.charts.MockedCharts._
     
     // Create spark configuration holder
     val sparkConf = new SparkConf()
@@ -42,7 +38,7 @@ object Main {
     // This is needed only if not using spark-submit (comment otherwise)
     
     def setExecutorJars() = {
-      val currentProjectJars = Array("lib/generated.simple-spark-0.0.1-SNAPSHOT.jar", "target/scala-2.10/generated.simple-spark_2.10-0.0.1-SNAPSHOT.jar").map{j => new java.io.File(j)}.filter(_.exists()).map(_.getAbsolutePath)
+      val currentProjectJars = Array("lib/com.example.simple-spark-0.0.1-SNAPSHOT.jar", "target/scala-2.10/com.example.simple-spark_2.10-0.0.1-SNAPSHOT.jar").map{j => new java.io.File(j)}.filter(_.exists()).map(_.getAbsolutePath)
       val sparkLibDir = new java.io.File("spark-lib")
       val fromProjectJars = Array[String]().map{j => new java.io.File(sparkLibDir, j).getAbsolutePath}
       val jarsArray = (sparkConf.get("spark.jars", "").split(",").toArray ++ currentProjectJars ++ fromProjectJars).distinct.filter(!_.isEmpty)

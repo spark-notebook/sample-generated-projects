@@ -1,5 +1,5 @@
 
-package generated.simplespark
+package com.example.simplespark
 
 
   //---//
